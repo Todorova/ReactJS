@@ -20,22 +20,6 @@ class CharactersList extends Component {
         }
     }
 
-
-    // componentWillReceiveProps() {
-    //     fetch('http://localhost:9999/roster')
-    //         .then(data => {
-    //             return data.json();
-    //         })
-    //         .then(parsedData => {
-    //             console.log(parsedData);
-    //             this.promisifyState({images: parsedData})
-    //             .then(() => {
-    //                 console.log('images loaded');
-    //                 console.log(this.images)
-    //             })
-    //         })
-    // }
-
     componentDidMount() {
         fetch('http://localhost:9999/roster')
             .then(data => {
@@ -53,9 +37,9 @@ class CharactersList extends Component {
         let images = this.state.images;
 
         const components = images.map((image, index) =>
-            //<div key={index} className='image'>
-                <Image imageUrl={image.url} />
-            //</div>
+            <div key={index}>
+                <Image imageUrl={image.url} id={image.id}/>
+            </div>
         )
 
         return (
