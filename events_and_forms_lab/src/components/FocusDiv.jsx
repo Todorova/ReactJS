@@ -34,6 +34,8 @@ export default class FocusDiv extends Component {
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}>
                 <p>{this.props.number}</p>
+
+                {this.props.children}
             </div>
         );
 
