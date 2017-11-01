@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ToggleBtn from './components/ToggleBtn';
+import FocusDiv from './components/FocusDiv';
+import Form from './components/forms/Form';
 
 class App extends Component {
   render() {
@@ -15,6 +17,13 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <FocusDiv number='1'/>
+        <FocusDiv number='2'/>
+        <br/>
+        <FocusDiv number='3'/>
+        <FocusDiv number='4'/>
+
+        <Form/>
       </div>
     );
   }

@@ -6,10 +6,13 @@ export default class ToggleBtn extends Component{
         super(props);
 
         this.state = {power: true};
+
+        //bind event handlers
+        this.clickHandler = this.clickHandler.bind(this);
     }
 
     clickHandler(){
-        this.setState({power: !this.state.power});
+        this.setState(prevState => ({power: !prevState.power}));
     }
 
 
@@ -17,7 +20,7 @@ export default class ToggleBtn extends Component{
 
         return(
             <button onClick={this.clickHandler}>
-                {this.state.power? 'ON' : 'OFF'}
+                {this.state.power ? 'ON' : 'OFF'}
             </button>
         );
 
