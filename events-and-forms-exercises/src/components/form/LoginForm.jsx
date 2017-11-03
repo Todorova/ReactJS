@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
-
-import validationFunc from './../../utils/formValidator'
-import Input from './formFields/Input'
-
+import React, { Component } from 'react';
+import validationFunc from './../../utils/formValidator';
+import Input from './formFields/Input';
 
 export default class LoginForm extends Component {
 
     constructor(props) {
         super(props);
-
 
         this.state = {
             email: '',
@@ -16,15 +13,44 @@ export default class LoginForm extends Component {
         }
     }
 
-    submitLogin(e){
+    submitLogin(e) {
         e.preventDefault();
+
+        let payload = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        this.loginUser(payload);
+    }
+
+    loginUser(payload) {
+        fetch('http://localhost:5000/auth/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(res => {
+                return res.json()
+            })
+            .then(d => {
+                //save the authToken to the sessionstorage
+                this.props.authFunc(d);
+            })
     }
 
     render() {
 
-        let validPass = this.state.password !== '';
-        let validEmail = this.state.email !== '';
-
+        let validateObj = validationFunc(
+            this.state.email,
+            this.state.email,
+            'U',
+            this.state.password,
+            this.state.password
+        )
 
         return (
             <form onSubmit={this.submitLogin.bind(this)}>
@@ -38,7 +64,7 @@ export default class LoginForm extends Component {
                             func={e => {
                                 this.setState({ email: e.target.value })
                             }}
-                            valid={validEmail}
+                            valid={validateObj.validMail}
                         />
 
                         <Input
@@ -48,11 +74,11 @@ export default class LoginForm extends Component {
                             func={e => {
                                 this.setState({ password: e.target.value })
                             }}
-                            valid={validPass}
+                            valid={validateObj.validPassword}
                         />
 
                         <input
-                            style={({ "display": validPass && validEmail === true ? '' : 'none' })}
+                            style={({ "display": validateObj.validPassword && validateObj.validMail === true ? '' : 'none' })}
                             type='submit'
                             value='Login'
                         />
