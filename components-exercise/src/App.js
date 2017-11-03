@@ -33,7 +33,8 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.state.rosterImageId);
+    console.log(this.state.rosterImageId);
+
     return (
       <div className='App'>
         <Slider updateFunc={this.changeFocusImageId} focusImageId={this.state.focusImageId} />
