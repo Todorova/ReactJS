@@ -25,7 +25,13 @@ class Details extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let newCharId = nextProps.characterId.id;
+        let newCharId = undefined;
+
+        if(nextProps.characterId.id){
+            newCharId = nextProps.characterId.id;
+        }else{
+            newCharId = nextProps.characterId
+        }
 
         fetch('http://localhost:9999/character/' + newCharId)
         .then(data => {
@@ -44,7 +50,6 @@ class Details extends Component {
                 <p>{this.state.currentChar.bio}</p>
             </fieldset>
         )
-
 
     }
 

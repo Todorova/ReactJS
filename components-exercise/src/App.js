@@ -24,7 +24,6 @@ class App extends Component {
       this.setState({rosterImageId: newState});
     }
 
-
   }
 
   //add event to the observer
