@@ -47,8 +47,12 @@ export default class CreatePokemonForm extends Component {
             body: JSON.stringify(payload)
         }).then((res) => {
             return res.json();
-        }).then(d => {
-            })
+        }).then(parsedData => {
+            let pokemons = parsedData.pokemons;
+            this.setState({
+                data: pokemons
+            });
+        })
     }
 
     getPokemons() {

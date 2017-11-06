@@ -23,6 +23,7 @@ class Slider extends Component {
     }
 
     componentWillReceiveProps() {
+
         fetch('http://localhost:9999/episodePreview/' + this.props.focusImageId)
             .then(data => {
                 return data.json();
@@ -42,7 +43,7 @@ class Slider extends Component {
                 return data.json();
             })
             .then(parseData => {
-                console.log(parseData);
+                //console.log(parseData);
                 this.promisifyState({ selectedImg: parseData.url })
                     .then(() => {
                         console.log('mount');
