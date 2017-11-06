@@ -5,6 +5,11 @@ export default class RegisterForm extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            username: '',
+            password: ''
+        }
+
         this.dataCollector = this.dataCollector.bind(this);
     }
 
@@ -18,11 +23,11 @@ export default class RegisterForm extends Component {
             <form id="registerForm">
                 <h2>Register</h2>
                 <label>Username:</label>
-                <input name="username" type="text" />
+                <input onChange={this.dataCollector} name="username" type="text" />
                 <label>Password:</label>
                 <input name="password" type="password" />
                 <label>Repeat Password:</label>
-                <input name="repeatPass" type="password" />
+                <input onChange={this.dataCollector} name="repeatPass" type="password" />
                 <input id="btnRegister" value="Sign Up" type="submit" />
             </form>
         )
