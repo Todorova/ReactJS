@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import requestHandler from './../../utils/requestHandler';
 export default class LoginForm extends Component {
 
     constructor(props) {
@@ -18,27 +18,23 @@ export default class LoginForm extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    login(e){
+    login(e) {
         e.preventDefault();
-        fetch('https://baas.kinvey.com/user/kid_HkGx9W00W/login', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Basic ' + btoa('kid_HkGx9W00W:c9f5c3d550804da48b90f0a02eb789d1'),
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(parsedJSON => {
-            let token = parsedJSON._kmd.authtoken;
-            let user = {id: parsedJSON._id, username: parsedJSON.username}
-            this.props.saveUserAuth(token, user);
-        })
-        .catch((e) => {
-            console.log(e);
-        })
+
+        this.setState({ loading: true });
+
+        requestHandler.login(
+            {
+                username: this.state.username,
+                password: this.state.password
+            })
+            .then(parsedJSON => {
+                this.setState({ loading: false });
+                let token = parsedJSON._kmd.authtoken;
+                let user = { id: parsedJSON._id, username: parsedJSON.username }
+                this.props.saveUserAuth(token, user);
+            })
+
     }
 
     render() {

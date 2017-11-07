@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Link, Switch, Redirect, Router, BrowserRouter } from 'react-router-dom';
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
@@ -9,7 +9,6 @@ import Home from './components/auth/Home';
 
 
 class App extends Component {
-
 
   constructor(props) {
     super(props);
@@ -58,9 +57,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <Header username={this.state.user.username} logout={this.logout} />
-        <Home authToken={this.state.authToken} saveUserAuth={this.saveUserAuth} />
+        <BrowserRouter>
+          <Home authToken={this.state.authToken} saveUserAuth={this.saveUserAuth} />
+        </BrowserRouter>
         <Footer />
+
       </div>
     );
   }
