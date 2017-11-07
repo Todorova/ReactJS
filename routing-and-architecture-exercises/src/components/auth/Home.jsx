@@ -3,23 +3,10 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import About from './../common/About';
 
-
 export default class Home extends Component {
 
     constructor(props) {
-        super(props);
-
-        this.state = {
-            authToken: ''
-        }
-
-        this.saveUserAuth = this.saveUserAuth.bind(this);
-    }
-
-    saveUserAuth(token) {
-        this.setState({
-            authToken: token
-        })
+        super(props);   
     }
 
     render() {
@@ -27,10 +14,10 @@ export default class Home extends Component {
             <section id="viewWelcome">
                 <div className="welcome">
                     <div className="signup">
-                        {this.state.authToken === '' ? (
+                        {this.props.authToken === '' ? (
                             <div>
-                                <LoginForm saveUserAuth={this.saveUserAuth} />
-                                <RegisterForm saveUserAuth={this.saveUserAuth} />
+                                <LoginForm saveUserAuth={this.props.saveUserAuth} />
+                                <RegisterForm saveUserAuth={this.props.saveUserAuth} />
                             </div>
                         ) : (
                                 null

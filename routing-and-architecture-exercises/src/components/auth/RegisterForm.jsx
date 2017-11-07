@@ -14,7 +14,6 @@ export default class RegisterForm extends Component {
     }
 
     dataCollector(e) {
-        console.log(e);
         this.setState({ [e.target.name]: e.target.value })
     }
 

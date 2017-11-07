@@ -33,8 +33,8 @@ export default class LoginForm extends Component {
         })
         .then(parsedJSON => {
             let token = parsedJSON._kmd.authtoken;
-
-            this.props.saveUserAuth(token);
+            let user = {id: parsedJSON._id, username: parsedJSON.username}
+            this.props.saveUserAuth(token, user);
         })
         .catch((e) => {
             console.log(e);
