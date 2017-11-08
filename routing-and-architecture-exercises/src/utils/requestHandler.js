@@ -30,6 +30,31 @@ const requestHandler = {
                 return response.json();
             })
 
+    },
+    pullPosts: (authToken) => {
+        return fetch(`${hostUrl}/appdata/${appKey}/posts?query={}&sort={"_kmd.ect": -1}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Kinvey ' + localStorage.getItem('token')
+            },
+        })
+            .then(response => {
+                return response.json();
+            })
+    },
+    createPost: (payload) => {
+        return fetch(`${hostUrl}/appdata/${appKey}/posts`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Kinvey ' + localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                return response.json();
+            })
+
     }
 }
 

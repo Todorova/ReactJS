@@ -3,6 +3,8 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import About from './../common/About';
 import Menu from './../common/Menu';
+import LoggedWraper from './../common/LogedWraper';
+
 
 export default class Home extends Component {
 
@@ -15,7 +17,6 @@ export default class Home extends Component {
             <section id="viewWelcome">
                 {
                     this.props.authToken === '' ? (
-
                         <div className="welcome">
                             <div className="signup">
                                 <div>
@@ -26,7 +27,8 @@ export default class Home extends Component {
                             <About />
                         </div>
                     ) : (
-                            <Menu />
+                        //Menu
+                            <LoggedWraper />
                         )
                 }
             </section>

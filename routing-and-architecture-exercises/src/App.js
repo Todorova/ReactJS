@@ -7,7 +7,6 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './components/auth/Home';
 
-
 class App extends Component {
 
   constructor(props) {
@@ -48,6 +47,9 @@ class App extends Component {
   }
 
   saveUserAuth(token, user) {
+    localStorage.setItem("token", token);
+    localStorage.setItem("username", user.username);
+
     this.setState({
       authToken: token,
       user: user

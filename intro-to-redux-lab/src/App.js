@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import store from './calculator/Calculator';
-import {add, subtract, multiply, divide} from './calculator/actionCreators';
+import * as actions from './calculator/actionCreators';
 import {connect} from 'react-redux';
 
 
@@ -25,11 +25,11 @@ class App extends Component {
 
   onChange(e){
 
-    if(isNAN(e.target.value)){
+    if(isNaN(e.target.value)){
       return;
     }
 
-    this.setState({value: e.target.value})
+    this.setState({value: Number(e.target.value)})
   }
 
   componentDidMount(){

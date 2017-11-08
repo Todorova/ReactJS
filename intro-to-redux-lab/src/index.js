@@ -7,9 +7,9 @@ import { createStore } from 'redux';
 import store from './calculator/Calculator';
 import { Provider } from 'react-redux';
 
-ReactDOM.render(
+ReactDOM.render((
     <Provider store={store}>
-        <App />, document.getElementById('root')
+        <App />
     </Provider>
-);
+), document.getElementById('root'));
 registerServiceWorker();
