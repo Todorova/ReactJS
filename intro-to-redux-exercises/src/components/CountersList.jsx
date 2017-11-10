@@ -15,7 +15,6 @@ class CountersList extends Component {
             <div className='container'>
                 <h1>Counters</h1>
                 <div>
-                    {console.log(this.props.increment)}
                     {this.props.counters.map(counter => {
                         return <Counter
                             key={counter.index}
@@ -35,13 +34,26 @@ class CountersList extends Component {
 
 }
 
+
 function mapStateToProps(state) {
     return {
         counters: state
     }
 }
 
-export default connect(mapStateToProps)(CountersList);
+function mapDispatchToProps(dispatch){
+    return {
+        // loadCourses: () => {
+        //     dispatch(addInput);
+        // },
+        // change: () => {
+        //     dispatch({type: 'TOGGLE', id:1})
+        // }   
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CountersList);
 
 
 
