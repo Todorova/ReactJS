@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Counter from './components/Counter';
 import CountersList from './components/CountersList';
-import actionObj from './actions/index';
+
 
 // function addCounterAction() {
 //   store.dispatch(actionObj.addCounter());
@@ -36,8 +36,6 @@ class App extends Component {
   constructor(props){
     super(props);
   }
-
-
 
   render() {
     return (
