@@ -11,21 +11,28 @@ class Message extends Component {
             id: this.props.id,
             initValue: this.props.content,
             value: this.props.content,
-            showConfirmButtons: false
+            showConfirmButtons: this.props.showConfirmButtons
         }
 
         this.onChange = this.onChange.bind(this);
         this.checkContent = this.checkContent.bind(this);
     }
 
+    componentWillReceiveProps(props){
+        this.setState(
+            {
+                initValue: props.content,
+                value: props.content,
+                showConfirmButtons: props.showConfirmButtons
+            }
+        )
+    }
+
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-
     }
 
     checkContent() {
-        console.log(this.state.initValue)
-        console.log(this.state.value)
         if (this.state.initValue != this.state.value) {
             this.setState({ showConfirmButtons: true })
         }
@@ -47,8 +54,17 @@ class Message extends Component {
             return (
                 <div>
                     <input type='text' name='value' onChange={this.onChange} value={this.state.value} />
-                    <button type='submit' onClick={() => { this.props.discardChanges({ id: this.state.id }) }}>&#10006; </button>
-                    <button type='submit' onClick={() => { this.props.saveChanges({ id: this.state.id }) }}>&#10004; </button>
+                    <button type='submit'
+                        onClick={() => {
+                            this.props.discardChanges({
+                                message: this.state
+                            })
+                        }}>&#10006; </button>
+                    <button type='submit' onClick={() => {
+                        this.props.saveChanges({
+                            message: this.state
+                        })
+                    }}>&#10004; </button>
                 </div>
             )
         }
@@ -65,11 +81,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         saveChanges: (payload) => {
-            //console.log(payload)
             dispatch(actionObj.saveChangedMessage(payload));
         },
         discardChanges: (payload) => {
-            //console.log(payload)
             dispatch(actionObj.discardChanges(payload));
         }
     }

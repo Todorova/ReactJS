@@ -17,8 +17,11 @@ class MessagesList extends Component {
                 <h1>Messages</h1>
                 <AddMessageForm />
                 {this.props.messages.map(message => {
-                    console.log(message)
-                    return <Message key={message.index} content={message.content} id={message.index}/>
+                    return <Message 
+                    key={message.index} 
+                    content={message.content} 
+                    id={message.index}
+                    showConfirmButtons={false}/>
                 })}
                 <input type='submit' value='Delete last' onClick={() => {this.props.deleteLastMessage()}}/>
             </div>
