@@ -55,6 +55,7 @@ async function fetchStats() {
 }
 
 async function createFurniture(data) {
+
     const res = await fetch(host + 'furniture/create', {
         method: 'POST',
         headers: {

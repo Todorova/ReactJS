@@ -1,6 +1,7 @@
 import { AJAX_BEGIN, AJAX_ERROR, FETCH_PAGE_SUCCESS, CREATE_FURNITURE_SUCCESS } from './actionTypes';
 import { fetchPage, fetchDetails, fetchSearchPage, createFurniture } from '../api/remote';
 
+
 function fetchSuccess(data) {
     return {
         type: FETCH_PAGE_SUCCESS,
@@ -59,6 +60,7 @@ export function fetchSearchAction(query, page) {
         }
     };
 }
+
 
 export function createAction(item) {
     return async (dispatch) => {
