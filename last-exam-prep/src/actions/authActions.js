@@ -1,0 +1,51 @@
+import { REGISTER_SUCCESS, LOGIN_SUCCESS, REDIRECTED } from '../actions/actionTypes';
+import { login, register } from '../api/remote';
+
+function registerSuccess() {
+    return {
+        type: REGISTER_SUCCESS
+    };
+}
+
+function loginSuccess() {
+    return {
+        type: LOGIN_SUCCESS
+    };
+}
+
+export function redirect() {
+    return {
+        type: REDIRECTED
+    };
+}
+
+function registerAction(name, email, password) {
+    return (dispatch) => {
+        return register(name, email, password)
+            .then(json => {
+                console.log(json);
+                if (json.success) {
+                    dispatch(registerSuccess());
+                }
+            });
+    };
+}
+
+function loginAction(name, password) {
+    return (dispatch) => {
+        return login(name, password)
+            .then(json => {
+                localStorage.setItem('authToken', json.token);
+                localStorage.setItem('user', json.user.name);
+                dispatch(loginSuccess());
+            });
+    };
+}
+
+function logoutAction() {
+    return (dispatch) => {
+        localStorage.clear();
+    };
+}
+
+export { registerAction, loginAction, logoutAction };
