@@ -1,6 +1,6 @@
-import { CREATE_HOTEL, FETCH_HOTELS } from '../actions/actionTypes';
-import { createHotel, fetchHotels } from '../api/remote';
-
+import { CREATE_HOTEL, FETCH_HOTELS, FETCH_HOTEL_BY_ID, CREATE_REVIEW, FETCH_HOTEL_REVIEWS } 
+from '../actions/actionTypes';
+import { createHotel, fetchHotels, fetchHotelById, createReview, fetchHotelReviews } from '../api/remote';
 
 function createHotelSuccess(data) {
     return {
@@ -9,10 +9,31 @@ function createHotelSuccess(data) {
     };
 }
 
-function fetchHotelsSuccess(hotels) {
+function fetchHotelReviewsSuccess(data){
+    return {
+        type: FETCH_HOTEL_REVIEWS,
+        data
+    };
+}
+
+function createReviewSuccess(data) {
+    return {
+        type: CREATE_REVIEW,
+        data
+    };
+}
+
+function fetchHotelsSuccess(data) {
     return {
         type: FETCH_HOTELS,
-        hotels
+        data
+    };
+}
+
+function fetchHotelByIdSuccess(hotel) {
+    return {
+        type: FETCH_HOTEL_BY_ID,
+        hotel
     };
 }
 
@@ -20,11 +41,20 @@ function createHotelAction(hotel) {
     return (dispatch) => {
         return createHotel(hotel)
             .then(json => {
-                console.log(json);
                 if (json.success) {
                     dispatch(createHotelSuccess(hotel));
                 }
             });
+    };
+}
+
+function createReviewAction(id, review) {
+    return (dispatch) => {
+        return createReview(id, review)
+            .then(json => {
+                console.log(json)
+                dispatch(createReviewSuccess(json.review));
+            })
     };
 }
 
@@ -37,8 +67,30 @@ function fetchHotelsAction() {
     };
 }
 
+function fetchHotelByIdAction(id) {
+    return (dispatch) => {
+        return fetchHotelById(id)
+            .then(json => {
+                dispatch(fetchHotelByIdSuccess(json));
+            }).catch(e => {
+                throw e;
+            });
+    };
+}
 
-export { createHotelAction, fetchHotelsAction };
+function fetchHotelReviewsAction(id) {
+    return (dispatch) => {
+        return fetchHotelReviews(id)
+            .then(json => {
+                dispatch(fetchHotelReviewsSuccess(json));
+            }).catch(e => {
+                throw e;
+            });
+    };
+}
+
+
+export { createHotelAction, fetchHotelsAction, fetchHotelByIdAction, createReviewAction, fetchHotelReviewsAction };
 
 
 

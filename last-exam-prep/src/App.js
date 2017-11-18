@@ -59,7 +59,7 @@ class App extends Component {
                         <Route path="/view/:page" component={HomePage} />
                         <Route path="/create" component={CreatePage} />
                         <Route path="/profile" component={ProfilePage} />
-                        <Route path="/details/:id" component={DetailsPage} />
+                        <Route path="/hotels/details/:id" component={DetailsPage} />
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/hotels/all" component={HotelList} />

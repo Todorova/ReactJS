@@ -22,7 +22,7 @@ export default class HotelsList extends Component {
                                 <cite title="Source Title">{this.props.name}</cite>
                             </footer>
                             <div className="pull-right">
-                                <Link to={'/details/' + this.props.id} className="btn btn-info">Details</Link>
+                                <Link to={'details/' + this.props.id} className="btn btn-info">Details</Link>
                             </div>
                         </blockquote>
                     </div>

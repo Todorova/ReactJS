@@ -31,7 +31,6 @@ async function login(email, password) {
 }
 
 async function createHotel(hotel) {
-    console.log(hotel);
     const res = await fetch(host + 'hotels/create', {
         method: 'POST',
         headers: {
@@ -48,5 +47,41 @@ async function fetchHotels() {
     return await res.json();
 }
 
+async function fetchHotelById(hotelId) {
 
-export { register, login, createHotel, fetchHotels };
+    const res = await fetch(host + 'hotels/details/' + hotelId, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + localStorage.getItem('authToken')
+        }
+    });
+    return await res.json();
+}
+
+async function createReview(id, review) {
+    const res = await fetch(host + `hotels/details/${id}/reviews/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + localStorage.getItem('authToken')
+        },
+        body: JSON.stringify(review)
+    });
+    return await res.json();
+}
+
+async function fetchHotelReviews(id) {
+
+    const res = await fetch(host + `hotels/details/${id}/reviews`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + localStorage.getItem('authToken')
+        }
+    });
+    return await res.json();
+}
+
+
+export { register, login, createHotel, fetchHotels, fetchHotelById, createReview, fetchHotelReviews };

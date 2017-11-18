@@ -7,3 +7,7 @@ export const REDIRECTED = 'REDIRECTED';
 
 export const CREATE_HOTEL = 'CREATE_HOTEL';
 export const FETCH_HOTELS = 'FETCH_HOTELS';
+export const FETCH_HOTEL_BY_ID = 'FETCH_HOTEL_BY_ID';
+export const CREATE_REVIEW = 'CREATE_REVIEW';
+export const FETCH_HOTEL_REVIEWS = 'FETCH_HOTEL_REVIEWS';
+
